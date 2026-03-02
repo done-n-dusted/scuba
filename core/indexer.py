@@ -6,10 +6,10 @@ class Indexer:
         from core.extractor import Extractor
         from core.indexer import Indexer
 
-        traverser = Traverser()
+        traverser = Traverser("/some/dir")
         extractor = Extractor()
         indexer = Indexer(traverser, extractor)
-        index = indexer.build_index("/some/dir")
+        index = indexer.build_index()
     """
 
     def __init__(self, traverser, extractor):
@@ -17,12 +17,12 @@ class Indexer:
         self.extractor = extractor
         self.index = {}
 
-    def build_index(self, root_path: str):
-        """Traverse ``root_path`` and extract metadata for each file.
+    def build_index(self):
+        """Build the index using the configured traverser and extractor.
 
         Returns a dictionary mapping file paths to metadata dictionaries.
         """
-        for file_path in self.traverser.iterate(root_path):
+        for file_path in self.traverser.iterate():
             meta = self.extractor.extract(file_path)
             self.index[file_path] = meta
         return self.index
