@@ -6,6 +6,10 @@ A Python file indexer project with core components for traversing directories, e
 
 ```text
 file-indexer/
+├── .agents/
+│   └── skills/
+│       ├── engineering-standards/
+│       └── git-commit/
 ├── apps/
 │   ├── backend/
 │   │   ├── db/
