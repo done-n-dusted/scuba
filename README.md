@@ -1,23 +1,29 @@
 # File Indexer
 
-A Python file indexer project with core components for traversing directories, extracting file metadata, indexing, and storage. It now includes a FastAPI server to expose endpoints for indexing and searching files.
+A Python file indexer project with core components for traversing directories, extracting file metadata, indexing, and storage. It now includes a FastAPI server (backend) and a placeholder for the frontend component.
 
 ## Project Structure
 
 ```text
 file-indexer/
-├── core/
-│   ├── __init__.py
-│   ├── traverser.py
-│   ├── extractor.py
-│   ├── indexer.py
-│   └── storage.py
+├── apps/
+│   ├── backend/
+│   │   ├── core/
+│   │   │   ├── __init__.py
+│   │   │   ├── traverser.py
+│   │   │   ├── extractor.py
+│   │   │   ├── indexer.py
+│   │   │   └── storage.py
+│   │   ├── tests/
+│   │   └── main.py
+│   └── frontend/
+│       ├── tests/
+│       └── index.html
 ├── test_data/
 │   ├── folder1/
 │   │   └── file2.json
 │   ├── file1.txt
 │   └── script.py
-├── main.py
 ├── pyproject.toml
 └── README.md
 ```
@@ -34,10 +40,10 @@ poetry install
 
 ## Running the Server
 
-Start the FastAPI server using Uvicorn:
+Start the FastAPI backend server using Uvicorn:
 
 ```bash
-poetry run uvicorn main:app --reload
+poetry run uvicorn apps.backend.main:app --reload
 ```
 
 ## API Endpoints
@@ -50,13 +56,13 @@ Once the server is running, you can access the following endpoints:
 
 ## Core Component Usage
 
-You can still use the core components independently of the FastAPI server:
+You can still use the core components independently of the FastAPI server by importing from `apps.backend.core`:
 
 ```python
-from core.traverser import Traverser
-from core.extractor import Extractor
-from core.indexer import Indexer
-from core.storage import Storage
+from apps.backend.core.traverser import Traverser
+from apps.backend.core.extractor import Extractor
+from apps.backend.core.indexer import Indexer
+from apps.backend.core.storage import Storage
 
 # Initialize components
 traverser = Traverser("test_data")

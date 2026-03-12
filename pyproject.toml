@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "A Python file indexer with traverser, extractor, indexer, and storage components."
 authors = ["Anurag <31320.anurag@gmail.com>"]
 license = "MIT"
+packages = [{include = "apps"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
