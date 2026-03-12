@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Query
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 from core.traverser import Traverser
@@ -7,6 +8,14 @@ from core.indexer import Indexer
 from core.storage import Storage
 
 app = FastAPI(title="File Indexer")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 storage = Storage("index.json")
 
@@ -35,3 +44,7 @@ def search_index(q: str = Query(..., description="Search query")):
         if q.lower() in path.lower():
             results[path] = meta
     return {"query": q, "results": results}
+
+@app.get("/rpc/health")
+def health_check():
+    return {"status": "ok", "service": "file-indexer-backend"}

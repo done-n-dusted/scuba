@@ -10,6 +10,8 @@ file-indexer/
 │   └── skills/
 │       ├── engineering-standards/
 │       └── git-commit/
+│   └── workflows/
+│       └── commit.md
 ├── apps/
 │   ├── backend/
 │   │   ├── db/
@@ -55,6 +57,12 @@ make start
 ```
 *(You can also use `make start-backend` and `make start-frontend` individually).*
 
+**To monitor backend health:**
+```bash
+make status
+```
+*(This runs a CLI tool that polls the backend `/rpc/health` endpoint).*
+
 ## API Endpoints
 
 Once the backend server is running, you can access the following endpoints:
@@ -62,6 +70,7 @@ Once the backend server is running, you can access the following endpoints:
 - `POST /index`: Triggers the indexer to traverse the directory (default `test_data`) and save the index to `index.json`.
 - `GET /index`: Retrieves the complete built index.
 - `GET /search?q={query}`: Searches the index for files matching the given query string.
+- `GET /rpc/health`: Retrieves the health status of the backend server.
 
 ## Core Component Usage
 

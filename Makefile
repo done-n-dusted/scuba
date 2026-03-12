@@ -13,8 +13,7 @@ setup-backend:
 	cd apps/backend/python && poetry install
 
 setup-frontend:
-	@echo "Setting up frontend... (Assuming package.json framework in future)"
-	cd apps/frontend && echo "Install command (e.g. npm install) goes here"
+	npm install
 
 setup: setup-backend setup-frontend
 
@@ -22,7 +21,11 @@ start-backend:
 	cd apps/backend/python && poetry run uvicorn main:app --reload
 
 start-frontend:
-	@echo "Starting frontend... (Assuming npm run dev in future)"
-	cd apps/frontend && echo "Run command (e.g. npm run dev) goes here"
+	npm run dev
 
 start: start-backend start-frontend
+
+status:
+	@python3 scripts/status.py
+
+get-status: status
