@@ -1,6 +1,6 @@
 # File Indexer
 
-A Python file indexer project with core components for traversing directories, extracting file metadata, indexing, and storage. It now includes a FastAPI server (backend) and a placeholder for the frontend component.
+A Python file indexer project with core components for traversing directories, extracting file metadata, indexing, and storage. It now includes a FastAPI server (backend) and a Next.js frontend application managed by Turborepo.
 
 ## Project Structure
 
@@ -26,13 +26,17 @@ file-indexer/
 │   │       ├── main.py
 │   │       └── pyproject.toml
 │   └── frontend/
-│       ├── tests/
-│       └── index.html
+│       ├── app/
+│       ├── public/
+│       ├── tsconfig.json
+│       └── package.json
 ├── test_data/
 │   ├── folder1/
 │   │   └── file2.json
 │   ├── file1.txt
 │   └── script.py
+├── package.json
+├── turbo.json
 ├── Makefile
 └── README.md
 ```
