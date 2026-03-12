@@ -2,9 +2,9 @@ class Indexer:
     """Build an index of files using Traverser and Extractor.
 
     Example:
-        from apps.backend.core.traverser import Traverser
-        from apps.backend.core.extractor import Extractor
-        from apps.backend.core.indexer import Indexer
+        from core.traverser import Traverser
+        from core.extractor import Extractor
+        from core.indexer import Indexer
 
         traverser = Traverser("/some/dir")
         extractor = Extractor()

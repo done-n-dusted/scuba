@@ -1,10 +1,10 @@
 from fastapi import FastAPI, Query
 from pydantic import BaseModel
 from typing import Optional
-from apps.backend.core.traverser import Traverser
-from apps.backend.core.extractor import Extractor
-from apps.backend.core.indexer import Indexer
-from apps.backend.core.storage import Storage
+from core.traverser import Traverser
+from core.extractor import Extractor
+from core.indexer import Indexer
+from core.storage import Storage
 
 app = FastAPI(title="File Indexer")
 

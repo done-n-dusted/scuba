@@ -15,7 +15,8 @@ file-indexer/
 │   │   │   ├── indexer.py
 │   │   │   └── storage.py
 │   │   ├── tests/
-│   │   └── main.py
+│   │   ├── main.py
+│   │   └── pyproject.toml
 │   └── frontend/
 │       ├── tests/
 │       └── index.html
@@ -24,31 +25,33 @@ file-indexer/
 │   │   └── file2.json
 │   ├── file1.txt
 │   └── script.py
-├── pyproject.toml
+├── Makefile
 └── README.md
 ```
 
-## Setup
+## Setup & Execution
 
-Install the project dependencies and the FastAPI packages via Poetry:
+We use a `Makefile` at the root directory to orchestrate setting up and running the project.
 
+**To see all available commands:**
 ```bash
-poetry install
+make help
 ```
 
-*(Note: Ensure you have `fastapi` and `uvicorn` included in your environment.)*
-
-## Running the Server
-
-Start the FastAPI backend server using Uvicorn:
-
+**To install dependencies for both apps:**
 ```bash
-poetry run uvicorn apps.backend.main:app --reload
+make setup
 ```
+
+**To start the application servers:**
+```bash
+make start
+```
+*(You can also use `make start-backend` and `make start-frontend` individually).*
 
 ## API Endpoints
 
-Once the server is running, you can access the following endpoints:
+Once the backend server is running, you can access the following endpoints:
 
 - `POST /index`: Triggers the indexer to traverse the directory (default `test_data`) and save the index to `index.json`.
 - `GET /index`: Retrieves the complete built index.
@@ -56,13 +59,13 @@ Once the server is running, you can access the following endpoints:
 
 ## Core Component Usage
 
-You can still use the core components independently of the FastAPI server by importing from `apps.backend.core`:
+You can still use the core components independently of the FastAPI server by importing them:
 
 ```python
-from apps.backend.core.traverser import Traverser
-from apps.backend.core.extractor import Extractor
-from apps.backend.core.indexer import Indexer
-from apps.backend.core.storage import Storage
+from core.traverser import Traverser
+from core.extractor import Extractor
+from core.indexer import Indexer
+from core.storage import Storage
 
 # Initialize components
 traverser = Traverser("test_data")
