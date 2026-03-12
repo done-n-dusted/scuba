@@ -8,15 +8,17 @@ A Python file indexer project with core components for traversing directories, e
 file-indexer/
 ├── apps/
 │   ├── backend/
-│   │   ├── core/
-│   │   │   ├── __init__.py
-│   │   │   ├── traverser.py
-│   │   │   ├── extractor.py
-│   │   │   ├── indexer.py
-│   │   │   └── storage.py
-│   │   ├── tests/
-│   │   ├── main.py
-│   │   └── pyproject.toml
+│   │   ├── db/
+│   │   └── python/
+│   │       ├── core/
+│   │       │   ├── __init__.py
+│   │       │   ├── traverser.py
+│   │       │   ├── extractor.py
+│   │       │   ├── indexer.py
+│   │       │   └── storage.py
+│   │       ├── tests/
+│   │       ├── main.py
+│   │       └── pyproject.toml
 │   └── frontend/
 │       ├── tests/
 │       └── index.html

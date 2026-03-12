@@ -10,7 +10,7 @@ help:
 	@echo "  make start-frontend  - Start the frontend development server"
 
 setup-backend:
-	cd apps/backend && poetry install
+	cd apps/backend/python && poetry install
 
 setup-frontend:
 	@echo "Setting up frontend... (Assuming package.json framework in future)"
@@ -19,7 +19,7 @@ setup-frontend:
 setup: setup-backend setup-frontend
 
 start-backend:
-	cd apps/backend && poetry run uvicorn main:app --reload
+	cd apps/backend/python && poetry run uvicorn main:app --reload
 
 start-frontend:
 	@echo "Starting frontend... (Assuming npm run dev in future)"
