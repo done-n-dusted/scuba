@@ -15,10 +15,18 @@ class Extractor:
             Path to the file.
         """
         import os
-        stat = os.stat(file_path)
-        return {
-            "size": stat.st_size,
-            "modified": stat.st_mtime,
-            "created": stat.st_ctime,
-            "path": file_path,
-        }
+        import mimetypes
+        try:
+            stat = os.stat(file_path)
+            mime_type, _ = mimetypes.guess_type(file_path)
+            _, ext = os.path.splitext(file_path)
+            return {
+                "size": stat.st_size,
+                "modified": stat.st_mtime,
+                "created": stat.st_ctime,
+                "path": file_path,
+                "mime_type": mime_type,
+                "extension": ext
+            }
+        except OSError as e:
+            return {"path": file_path, "error": str(e)}

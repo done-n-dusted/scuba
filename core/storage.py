@@ -1,24 +1,26 @@
+import json
+import os
+
 class Storage:
-    """Simple in‑memory storage for the file index.
+    """JSON file storage for the file index."""
 
-    This is a placeholder implementation that stores the index in a Python
-    dictionary. In a real project you could replace this with a database or a
-    more sophisticated persistence layer.
-    """
-
-    def __init__(self):
+    def __init__(self, file_path: str = "index.json"):
+        self.file_path = file_path
         self._store = {}
+        self.load()
 
     def save(self, index: dict):
-        """Save the provided index.
-
-        Parameters
-        ----------
-        index: dict
-            Mapping of file paths to metadata dictionaries.
-        """
+        """Save the provided index to disk."""
         self._store = index.copy()
+        with open(self.file_path, "w") as f:
+            json.dump(self._store, f, indent=2)
 
     def load(self) -> dict:
-        """Return the stored index (or an empty dict if nothing is saved)."""
+        """Return the stored index from disk."""
+        if os.path.exists(self.file_path):
+            with open(self.file_path, "r") as f:
+                try:
+                    self._store = json.load(f)
+                except json.JSONDecodeError:
+                    self._store = {}
         return self._store.copy()

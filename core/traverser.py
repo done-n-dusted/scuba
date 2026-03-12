@@ -25,7 +25,10 @@ class Traverser:
 
     def iterate(self):
         """Yield file paths under ``root_path``."""
-        for root, dirs, files in os.walk(self.root_path, topdown=True, followlinks=self.follow_symlinks):
+        def onerror(err):
+            print(f"Error traversing: {err}")
+            
+        for root, dirs, files in os.walk(self.root_path, topdown=True, onerror=onerror, followlinks=self.follow_symlinks):
             if self.ignore_list:
                 dirs[:] = [d for d in dirs if d not in self.ignore_list]
                 files = [f for f in files if f not in self.ignore_list]
