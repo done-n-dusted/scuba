@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import { GlassCard } from "./components/GlassCard";
 import { GlassInput } from "./components/GlassInput";
 import { GlassButton } from "./components/GlassButton";
+import { BackendStatus } from "./components/BackendStatus";
 
 // Define Types for API Responses
 interface IndexResponse {
@@ -117,6 +118,9 @@ export default function Home() {
       <header className={styles.header}>
         <h1 className={styles.title}>Scuba Explorer</h1>
         <p className={styles.subtitle}>Index and search your file system with blazing speed</p>
+        <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'center' }}>
+          <BackendStatus />
+        </div>
       </header>
 
       <div className={styles.grid}>

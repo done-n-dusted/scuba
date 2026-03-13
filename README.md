@@ -65,7 +65,7 @@ make start
 ```bash
 make status
 ```
-*(This runs a CLI tool that polls the backend `/rpc/health` endpoint).*
+*(This runs a CLI tool that polls the backend `/rpc/health` endpoint every 2 seconds with exponential backoff on failure).*
 
 **To stop all application servers:**
 ```bash
@@ -80,7 +80,11 @@ Once the backend server is running, you can access the following endpoints:
 - `POST /index`: Triggers the indexer to traverse the directory (default `test_data`) and save the index to `index.json`.
 - `GET /index`: Retrieves the complete built index.
 - `GET /search?q={query}`: Searches the index for files matching the given query string.
-- `GET /rpc/health`: Retrieves the health status of the backend server.
+- `GET /rpc/health`: Retrieves the health status of the backend server (includes uptime and timestamp).
+
+## Frontend Components
+
+- **BackendStatus**: A smart component that monitors the backend health from the browser, pausing automatically when the tab is hidden.
 
 ## Core Component Usage
 
