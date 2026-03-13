@@ -2,6 +2,10 @@ from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
+import time
+
+# Record start time for uptime calculation
+START_TIME = time.time()
 from core.traverser import Traverser
 from core.extractor import Extractor
 from core.indexer import Indexer
@@ -47,4 +51,9 @@ def search_index(q: str = Query(..., description="Search query")):
 
 @app.get("/rpc/health")
 def health_check():
-    return {"status": "ok", "service": "file-indexer-backend"}
+    return {
+        "status": "ok",
+        "service": "file-indexer-backend",
+        "timestamp": time.time(),
+        "uptime_seconds": int(time.time() - START_TIME)
+    }
