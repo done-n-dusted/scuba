@@ -67,6 +67,12 @@ make status
 ```
 *(This runs a CLI tool that polls the backend `/rpc/health` endpoint).*
 
+**To stop all application servers:**
+```bash
+make stop
+```
+
+
 ## API Endpoints
 
 Once the backend server is running, you can access the following endpoints:
